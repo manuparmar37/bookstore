@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderEmail;
 use App\Models\Book;
 use App\Models\Module;
 use App\Models\UserPurchase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Session;
 
@@ -120,10 +122,12 @@ class AdminController extends Controller
             'user_id' => Auth::user()->id,
             'book_id' => $request->id,
         ]);
+        $recipientEmail = 'manuparmar353@gmail.com';
+        Mail::to($recipientEmail)->send(new OrderEmail());
+
         $book->save();
         return redirect()->route('showBooks')->with([
             'message'   => 'Book Ordered Successfully'
         ]);
     }
-
 }

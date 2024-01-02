@@ -33,5 +33,5 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function () {
     Route::post('/updateBookDetails', [AdminController::class, 'updateBookDetails'])->name('updateBookDetails');
     Route::post('/deleteBook', [AdminController::class, 'deleteBook'])->name('deleteBook');
     Route::post('/order_book', [AdminController::class, 'orderBook'])->name('orderBook');
-    Route::match(['get', 'post'], 'bookListing',[AdminController::class,'bookListing'])->name('bookListing');
+    Route::match(['get', 'post'], 'bookListing', [AdminController::class, 'bookListing'])->name('bookListing');
 });
