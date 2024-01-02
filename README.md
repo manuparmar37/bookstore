@@ -69,5 +69,11 @@ Following commands have to be run post cloning the project and adding the .env f
 1. php artisan migrate
 2. php artisan db:seed
 3. Login email and password
-    email: manuparmar555@gmail.com
+
+    Admin User:
+    email: adminuser@gmail.com
+    password: Test@1234
+
+    End User:
+    email: enduser@gmail.com
     password: Test@1234
