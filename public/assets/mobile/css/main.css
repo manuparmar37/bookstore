@@ -1,0 +1,251 @@
+/* Tailwind directives ====================================================== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Utilities ================================================================ */
+
+  .card {
+    @apply border rounded-lg shadow-lg;
+  }
+
+  .container {
+    @apply p-4 flex flex-col gap-4;
+  }
+
+  /* Navigation bar =========================================================== */
+
+  .nav-wrapper {
+    @apply bg-white flex justify-around px-2 shadow-lg relative;
+  }
+
+  .nav-rule {
+    @apply absolute top-0 left-[20%] right-[20%] bottom-[60%] border-b-[1.5px] z-0;
+  }
+
+  .nav-item {
+    @apply flex flex-col items-center text-gray-400 z-10 py-5 px-2 text-center;
+  }
+
+  .nav-item-circle {
+    @apply w-8 h-8 rounded-full border grid place-items-center text-lg bg-gray-100 border-gray-200;
+  }
+
+  .nav-item-text {
+    @apply text-xs pt-2 font-medium;
+  }
+
+  .nav-item.active {
+    @apply text-green-700;
+  }
+
+  .nav-item.active .nav-item-circle {
+    @apply border-green-700 bg-white;
+  }
+
+  /* Accordian ================================================================ */
+
+  .accordian-wrapper {
+    @apply rounded shadow-lg bg-white;
+  }
+
+  .accordian-header {
+    @apply px-4 py-2 flex items-center justify-between;
+  }
+
+  .accordian-title {
+    @apply text-lg font-medium;
+  }
+
+  .accordian-icon {
+    @apply w-8 h-8;
+  }
+
+  .accordian-content {
+    @apply pt-0;
+  }
+
+  .accordian-content > .container {
+    @apply pt-0;
+  }
+
+  /* Popup ==================================================================== */
+
+  .popup-backdrop {
+    @apply absolute inset-0 bg-[#00000077] z-40 backdrop-blur-[2px];
+  }
+
+  .popup-wrapper {
+    @apply sticky z-50 bg-white bottom-0 left-0 right-0 rounded-t-xl transform-gpu shadow-2xl;
+  }
+
+  .popup-rule {
+    @apply absolute bg-gray-500 top-2 left-1/2 translate-x-[-50%] h-1 w-20 rounded-full;
+  }
+
+  .popup-header {
+    @apply p-4 border-b-[1.5px] text-xl font-medium;
+  }
+
+  .popup-content {
+    @apply p-4;
+  }
+
+  /* Forms ==================================================================== */
+
+  .control-wrapper {
+    @apply flex flex-col;
+  }
+
+  .control-label {
+    @apply text-gray-500 text-sm font-medium;
+  }
+
+  .control-input {
+    @apply rounded border-gray-200 invalid:border-red-500 px-4 py-2 border;
+  }
+
+  .control-input:not(select) {
+    @apply read-only:bg-gray-100;
+  }
+
+  .btn {
+    @apply bg-green-700 p-2 text-white rounded transition-all hover:bg-green-600 hover:shadow-lg active:bg-green-800  disabled:bg-gray-300 disabled:text-gray-500 disabled:shadow-none;
+  }
+
+  .btn-outline {
+    @apply border-green-700 border p-2 text-green-700 rounded transition-all hover:border-green-600 hover:shadow-lg active:border-green-800  disabled:border-gray-300 disabled:text-gray-500 disabled:shadow-none;
+  }
+
+  /* Page switcher ============================================================ */
+
+  .page-switcher-wrapper {
+    @apply flex flex-row justify-around items-center p-4;
+  }
+
+  .page-switcher-icon {
+    @apply border rounded-full w-6 h-6 grid place-items-center;
+  }
+
+  .page-switcher-text {
+    @apply text-sm text-gray-500;
+  }
+
+  /* Margin table ============================================================= */
+
+  .margin-table-header,
+  .margin-table-row {
+    @apply p-2 flex justify-between;
+  }
+
+  .margin-table-header {
+    @apply bg-gray-100 text-gray-500 rounded;
+  }
+
+  /* File Picker UI */
+
+  .file-picker-wrapper {
+    @apply flex flex-col gap-1;
+  }
+
+  .file-picker-input {
+    @apply hidden;
+  }
+
+  .file-picker-cancel {
+    @apply flex gap-2 items-center border px-4 py-2 rounded-lg;
+  }
+
+  /* Single file picker */
+
+  .single-file-picker {
+    @apply border rounded border-gray-200 px-4 py-2 flex justify-between items-center text-gray-600;
+  }
+
+  /* Resend OTP link */
+
+  .resend-otp-link.disabled {
+    @apply pointer-events-none text-gray-500;
+  }
+
+  /* Leads page */
+
+  .lead-card {
+    @apply bg-gray-50 rounded-lg grid grid-cols-2 overflow-hidden gap-2;
+  }
+
+  .lead-item {
+    @apply px-4 py-2;
+  }
+
+  .lead-line {
+    @apply col-span-2 w-full border-b;
+  }
+
+  .lead-status {
+    @apply px-4 pb-2 col-span-2 flex gap-4 items-center text-sm;
+  }
+
+  .lead-badge {
+    @apply px-3 py-1 rounded-lg text-sm;
+  }
+
+  .lead-badge.success {
+    @apply text-green-900 bg-green-100;
+  }
+
+  .lead-badge.warn {
+    @apply text-orange-900 bg-orange-100;
+  }
+
+  .lead-badge.error {
+    @apply text-red-900 bg-red-100;
+  }
+
+  .lead-links {
+    @apply grid grid-cols-2 px-2 gap-2;
+  }
+
+  .lead-link {
+    @apply underline underline-offset-2 text-blue-600 text-xs;
+  }
+
+  /* Toast */
+
+  .toast-error {
+    @apply border-2 border-red-400 bg-red-100 text-red-700 rounded-lg flex gap-4 p-4 absolute top-10 w-4/5 left-[50%] translate-x-[-50%];
+  }
+
+  .toast-warn {
+    @apply border-2 border-orange-400 bg-orange-100 text-orange-700 rounded-lg flex gap-4 p-4 absolute top-10 w-4/5 left-[50%] translate-x-[-50%];
+  }
+
+  .toast-success {
+    @apply border-2 border-green-400 bg-green-100 text-green-700 rounded-lg flex gap-4 p-4 absolute top-10 w-4/5 left-[50%] translate-x-[-50%];
+  }
+
+  .image-picker-icon-preview {
+    @apply w-12 h-10 rounded relative;
+  }
+
+  .image-picker-icon-preview-wrapper {
+    @apply w-12 h-10 rounded relative after:inset-0 after:absolute after:bg-green-500 after:rounded after:bg-opacity-60;
+  }
+
+  .image-picker-icon-preview-wrapper::after {
+    content: "\00D7";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    @apply text-3xl text-white;
+  }
+
+  /* Bug fixes */
+
+  /* Chrome doesn't make stuff fullscreen */
+  input[type="date"] {
+    @apply w-full;
+  }
+} ;

@@ -1,0 +1,162 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.ratioBtnColor2 {
+    margin-left: 20px;
+}
+
+input[type="radio"]:checked {
+    background-color: #179778;
+}
+
+.btnColor {
+    color: #0e5b48;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #0e5b48;
+    border-radius: 4px;
+    padding: 12px 0px;
+}
+
+.shadowDi {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 5px 5px 10px grey;
+    padding: 8px 20px;
+}
+
+.imgTag {
+    min-width: 24px;
+    min-height: 24px;
+}
+
+.svgPDIV {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #656e71;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.svgPDIV:hover {
+    color: #0e5b48;
+}
+
+.mDivHEader {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #e0e6e5;
+}
+
+.Create {
+    margin-left: 16px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.btn-sm {
+    padding: 3px 5px;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: 3px;
+}
+
+.text-danger {
+    color: red;
+    font-size: 13px;
+}
+
+.text-success {
+    color: green;
+    font-size: 13px;
+}
+
+.btn-danger {
+    background-color: red;
+}
+
+.btn-danger:hover {
+    background-color: red;
+}
+
+.btn-success {
+    color: #ffffff;
+    background-color: #23b9a9;
+    border-color: #23b9a9;
+}
+
+.btn-success:hover {
+    background-color: #23b9a9;
+}
+
+.btn-warning {
+    color: #ffffff;
+    background-color: #eac459;
+    border-color: #eac459;
+}
+
+.btn-warning:hover {
+    color: #ffffff;
+    background-color: #eac459;
+    border-color: #eac459;
+    box-shadow: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn {
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 2.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 5px;
+    height:auto;
+}
+
+.preloader {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-image: url(../../images/mobile_loader.gif);
+    background-repeat: no-repeat;
+    background-color: #FFF;
+    background-position: center;
+    opacity: .8;
+}
+
+.btn-file {
+    padding:5px;
+}
