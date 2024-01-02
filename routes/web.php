@@ -25,7 +25,7 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::group(['prefix' => '', 'middleware' => ['auth']], function () {
     Route::get('/home', [AdminController::class, 'showBooks'])->name('home');
     Route::get('/dashboard', [AdminController::class, 'showBooks'])->name('dashboard');
-    Route::get('/index', [AdminController::class, 'showBooks'])->name('index');
+    Route::get('/index', [AdminController::class, 'index'])->name('index');
     Route::get('/user', [AdminController::class, 'showBooks'])->name('user');
     Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
     Route::get('/book_list', [AdminController::class, 'bookList'])->name('book_list');

@@ -15,18 +15,24 @@ class AddNewModuleSeeder extends Seeder
             'icon' => 'ti-user',
             'parent_id' => 0,
         ],
+        [
+            'id' => 2,
+            'module_key' => 'admin_books_list',
+            'module_name' => 'Admin Books List',
+            'parent_id' => 1,
+        ],
     ];
     protected $newRolesToAdd = [
         [
-            'id' => 24,
-            'role_name' => 'Repayment Maker',
-            'role_title' => 'Repayment Maker',
+            'id' => 1,
+            'role_name' => 'Admin User',
+            'role_title' => 'Admin User',
             'Status' => 1,
         ],
         [
-            'id' => 25,
-            'role_name' => 'Repayment Checker',
-            'role_title' => 'Repayment Checker',
+            'id' => 2,
+            'role_name' => 'End User',
+            'role_title' => 'End User',
             'Status' => 1,
         ]
     ];

@@ -15,11 +15,18 @@ class CreateUsersSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Manu Parmar',
-                'email' => 'manuparmar555@gmail.com',
+                'name' => 'Admin User',
+                'email' => 'adminuser@gmail.com',
                 'password' => bcrypt("Test@1234"),
                 'is_admin' => 1,
                 'role_id' => 1,
+            ],
+            [
+                'name' => 'End User',
+                'email' => 'enduser@gmail.com',
+                'password' => bcrypt("Test@1234"),
+                'is_admin' => 0,
+                'role_id' => 2,
             ],
         ];
         foreach($users as $user) {

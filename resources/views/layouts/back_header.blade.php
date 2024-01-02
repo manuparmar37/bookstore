@@ -95,15 +95,6 @@
                     <div class="dropdown-footer"><a href="{{ route('index', ['module' => 'contribute_list', 'action' => 'list', 'key' => $keyTmp]) }}">View more</a></div>
                 </ul>
                 <!--/ dropdown -->
-           
-            
-            @if($userDetail->is_admin != 1)
-            <li class="dropdown dropdown-usermenu">
-                <a href="#" class=" dropdown-toggle" data-toggle="dropdown" aria-expanded="true">                  
-                    <span class="hidden-sm hidden-xs">Role ( {{ getLoginUserRole($user_id) }} )</span>
-                </a>
-            </li>
-            @endif
             
 
 

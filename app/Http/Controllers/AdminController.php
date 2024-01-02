@@ -13,6 +13,14 @@ use Session;
 
 class AdminController extends Controller
 {
+    public static function index(Request $request) {
+        $module = $request->module;
+        switch($module) {
+            case 'admin_books_list':
+                return self::bookList($request);
+                break;
+        }
+    }
     public static function getEncodedKey()
     {
         $datasession    =   Session::all();
@@ -27,7 +35,7 @@ class AdminController extends Controller
             'message'   =>  'Logged out successfully !'
         ]);
     }
-    public function bookList(Request $request) {
+    public static function bookList(Request $request) {
         return view('book_list');
     }
     
