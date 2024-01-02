@@ -37,19 +37,19 @@ class CreateBooksRelatedTables extends Migration
                 $table->decimal('price', 8, 2);
                 $table->integer('quantity_in_stock')->default(0);
                 $table->string('img_src')->default("");
-                $table->decimal('discount_percentage', 3, 2)->default(0);
+                $table->decimal('discount_percentage', 8, 2)->default(0);
                 $table->integer('views')->default(0);
                 $table->tinyInteger('is_deleted')->default(0);
                 $table->timestamps();
             });
         }
-        if (!Schema::hasTable('user_review_rating')) {
-            Schema::create('user_review_rating', function (Blueprint $table) {
+        if (!Schema::hasTable('user_review_ratings')) {
+            Schema::create('user_review_ratings', function (Blueprint $table) {
                 $table->id();
                 $table->integer('user_id');
                 $table->integer('book_id');
                 $table->string('review');
-                $table->decimal('rating', 1, 1);
+                $table->integer('rating');
                 $table->timestamps();
             });
         }
@@ -73,8 +73,7 @@ class CreateBooksRelatedTables extends Migration
         Schema::dropIfExists('genres');
         Schema::dropIfExists('authors');
         Schema::dropIfExists('books');
-        Schema::dropIfExists('user_review_rating');
-        Schema::dropIfExists('discounts');
+        Schema::dropIfExists('user_review_ratings');
         Schema::dropIfExists('user_purchases');
     }
 }

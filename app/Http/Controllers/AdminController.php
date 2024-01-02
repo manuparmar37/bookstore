@@ -6,6 +6,7 @@ use App\Mail\OrderEmail;
 use App\Models\Book;
 use App\Models\Module;
 use App\Models\UserPurchase;
+use App\Models\UserReviewRating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -83,10 +84,17 @@ class AdminController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->with(['message' => $validator->getMessageBag()]);
         }
+        $toAddOrUpdate = array_intersect_key($request->all(), array_flip(Book::BOOK_EDITABLES));
+        if ($request->hasFile('img_src')) 
+        {
+            $fileName = 'img_src-' . '-'.date('m-d-Y-His').'.' . $request->file('img_src')->getClientOriginalExtension();
+            $request->file('img_src')->move(public_path()."/", $fileName);
+            $toAddOrUpdate['img_src'] = $fileName;
+        }
         if($edit) {
-            Book::where('id', $request->id)->update(array_intersect_key($request->all(), array_flip(Book::BOOK_EDITABLES)));
+            Book::where('id', $request->id)->update($toAddOrUpdate);
         } else {
-            Book::create(array_intersect_key($request->all(), array_flip(Book::BOOK_EDITABLES)));
+            Book::create($toAddOrUpdate);
         }
         return redirect()->back()->with([
             'message'   =>  $edit ? 'Book Details Updated Successfully' : 'New Book Added Successfully'
@@ -103,10 +111,29 @@ class AdminController extends Controller
         $books = Book::select('books.id', 'title', 'isbn', 'genres.name as genre', 'authors.name as author', 'price', 'quantity_in_stock', 'genres.id as genre_id', 'authors.id as author_id', 'books.img_src', 'books.discount_percentage')
         ->join('genres', 'genres.id', 'books.genre_id')
         ->join('authors', 'authors.id', 'books.author_id')
+        ->leftjoin('user_review_ratings', 'user_review_ratings.book_id', 'books.id')
+        ->leftjoin('user_purchases', 'user_purchases.book_id', 'books.id')
+        ->where(function($q) {
+            $q->where('user_purchases.user_id', Auth()->user()->id);
+            $q->orWhereNull('user_purchases.user_id');
+        })
         ->where('books.quantity_in_stock', '>', 0)
+        ->groupBy('books.id')
+        ->orderBy(\DB::raw('count(user_purchases.id) + (CASE WHEN count(user_review_ratings.id) = 0 THEN 3 ELSE sum(user_review_ratings.rating) / count(user_review_ratings.id) END)'), 'desc')
+        ->where(function($q) use ($request) {
+            if(!empty($request->search_title)) {
+                $q->where('title', 'like', "%$request->search_title%");
+            }
+            if(!empty($request->search_author)) {
+                $q->where('authors.name', 'like', "%$request->search_author%");
+            }
+            if(!empty($request->search_genre)) {
+                $q->where('genres.name', 'like', "%$request->search_genre%");
+            }
+        })
         ->get();
 
-        return view('book_show', compact('books'));
+        return view('book_show', compact('books', 'request'));
     }
 
     public static function orderBook(Request $request) {
@@ -128,6 +155,25 @@ class AdminController extends Controller
         $book->save();
         return redirect()->route('showBooks')->with([
             'message'   => 'Book Ordered Successfully'
+        ]);
+    }
+
+    public static function submitRatingsAndReviews(Request $request) {
+        $validator  =   Validator::make($request->all(), 
+            ['bookId' => 'required|numeric', 'bookRating' => 'required|numeric', 'bookReview' => 'required']
+        );
+        if ($validator->fails()) {
+            return redirect()->back()->with(['message' => $validator->getMessageBag()]);
+        }
+        ['user_id', 'book_id', 'review', 'rating'];
+        UserReviewRating::create([
+            'user_id' => Auth::user()->id,
+            'book_id' => $request->bookId,
+            'review' => $request->bookReview,
+            'rating' => $request->bookRating,
+        ]);
+        return redirect()->route('showBooks')->with([
+            'message'   => 'Your Rating and Reviews have been saved.'
         ]);
     }
 }

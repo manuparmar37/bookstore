@@ -29,9 +29,10 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function () {
     Route::get('/user', [AdminController::class, 'showBooks'])->name('user');
     Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
     Route::get('/book_list', [AdminController::class, 'bookList'])->name('book_list');
-    Route::get('/books', [AdminController::class, 'showBooks'])->name('showBooks');
+    Route::match(['get', 'post'], '/books', [AdminController::class, 'showBooks'])->name('showBooks');
     Route::post('/updateBookDetails', [AdminController::class, 'updateBookDetails'])->name('updateBookDetails');
     Route::post('/deleteBook', [AdminController::class, 'deleteBook'])->name('deleteBook');
     Route::post('/order_book', [AdminController::class, 'orderBook'])->name('orderBook');
+    Route::post('/submitRatingsAndReviews', [AdminController::class, 'submitRatingsAndReviews'])->name('submitRatingsAndReviews');
     Route::match(['get', 'post'], 'bookListing', [AdminController::class, 'bookListing'])->name('bookListing');
 });

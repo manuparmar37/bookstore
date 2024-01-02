@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    protected $fillable = ['title','author_id','isbn','genre_id','price','quantity_in_stock', 'discount_percentage'];
-    const BOOK_EDITABLES = ['title','author_id','isbn','genre_id','price','quantity_in_stock', 'discount_percentage'];
+    protected $fillable = ['title','author_id','isbn','genre_id','price','quantity_in_stock', 'discount_percentage', 'img_src'];
+    const BOOK_EDITABLES = ['title','author_id','isbn','genre_id','price','quantity_in_stock', 'discount_percentage', 'img_src'];
     use HasFactory;
 }

@@ -42,15 +42,6 @@
                             <nav class="navbar navbar-light bg-light">
                                 <div class="col-sm-12">
                                     <form class="form-inline mtop-10" style="float:right;">
-                                        <span>Search:</span>
-                                        <div class="form-group">
-                                            <input class="form-control mb-2 mr-sm-2" type="text" name="search_by_name"
-                                                id="search_by_name" value="" placeholder="Search by keyword">
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="button" class="btn btn-success mb-2"
-                                                id="search">Search</button>
-                                        </div>
                                         <div class="form-group">
                                             <button data-toggle="modal" data-target="#updateBookData" type="button"
                                                 class="btn btn-success mb-2" id="search"
@@ -89,7 +80,7 @@
                             aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 200px;">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form method="POST" action="{{ route('updateBookDetails') }}">
+                                    <form method="POST" action="{{ route('updateBookDetails') }}" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal"
@@ -166,6 +157,14 @@
                                                     <div class="col-sm-9">
                                                         <input type="number" class="form-control"
                                                             id="discount_percentage" name="discount_percentage">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row form-group">
+                                                    <label for="img_src" class="col-sm-3 control-label">Image:</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="file" accept=".png, .jpg, .jpeg" class="form-control"
+                                                            id="img_src" name="img_src">
                                                     </div>
                                                 </div>
 
@@ -274,8 +273,10 @@
         function updateBookData(book) {
             if (book.id > 0) {
                 editCase = true;
+                $("#img_src").removeAttr("required");
             } else {
                 editCase = false;
+                $("#img_src").attr("required", "true");
             }
             $("#booksEditModalLabel").html(editCase ? 'Edit Book Data' : 'Add New Book');
             $("#id").val(book.id);
